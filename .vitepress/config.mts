@@ -50,7 +50,8 @@ export default defineConfig({
         }, {
           text: 'Solidity 进阶',
           items: [
-            { text: '全局变量/内置属性', link: '/docs/solidity/globalData' },
+            { text: '合约间的交互', link: '/docs/solidity/Interaction' },
+            { text: '合约升级', link: '/docs/solidity/upgrade' },
           ]
         }
       ]
