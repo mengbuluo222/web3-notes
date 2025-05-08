@@ -11,24 +11,15 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/': [
-        {
-          text: 'Index',
-          items: [
-            { text: 'Index', link: '/' }
-          ]
-        }
-      ],
-      // 当用户位于 `guide` 目录时，会显示此侧边栏
-      '/docs/guide/': [
-        {
-          text: 'Guide',
-          items: [
-            { text: 'One', link: '/docs/guide/one' },
-            { text: 'Two', link: '/docs/guide/two' }
-          ]
-        }
-      ],
+      // '/': [
+      //   {
+      //     text: 'Index',
+      //     items: [
+      //       { text: 'Index', link: '/' }
+      //     ]
+      //   }
+      // ],
+      
 
       // 当用户位于 `config` 目录时，会显示此侧边栏
       '/docs/solidity/': [
@@ -52,6 +43,7 @@ export default defineConfig({
           items: [
             { text: '合约间的交互', link: '/docs/solidity/Interaction' },
             { text: '合约升级', link: '/docs/solidity/upgrade' },
+            { text: 'create 与 create2', link: '/docs/solidity/create' },
           ]
         }
       ]
