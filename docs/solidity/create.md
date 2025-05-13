@@ -20,7 +20,7 @@ sender_address：创建合约的地址（即调用 CREATE 的合约或外部账�
 nonce：创建者的交易计数（外部账户）或合约内部的创建计数。
 
 
-rlp([sender_address, nonce]) 的底层实现就是 0xd6, 0x94, <address>, <nonce>。
+`rlp([sender_address, nonce]) 的底层实现就是 0xd6, 0x94, <address>, <nonce>`。
 
 所以两种写法本质上是相同的，只是前者更抽象（使用 RLP 库），后者更底层（手动构造）。
 
