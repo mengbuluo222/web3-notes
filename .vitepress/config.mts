@@ -3,6 +3,20 @@ export default defineConfig({
   title: "Sunny's Blog",
   description: "A VitePress Site",
   base: '/web3-notes',
+  head: [
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-N91DCTLCTF' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N91DCTLCTF');`
+    ]
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -44,6 +58,7 @@ export default defineConfig({
             { text: '合约间的交互', link: '/docs/solidity/Interaction' },
             { text: '合约升级', link: '/docs/solidity/upgrade' },
             { text: 'create 与 create2', link: '/docs/solidity/create' },
+            { text: '函数选择器'， link: '/docs/solidity/selector' },
           ]
         }
       ]

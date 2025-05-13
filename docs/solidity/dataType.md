@@ -174,7 +174,7 @@ contract StructUsageExample {
 mapping(address => uint) public balances;
 ```
 ### **映射的特性**
-- 键类型：映射的键可以是任何值类型，包括基本类型（如 uint、address)。
+- 键类型：映射的键可以是任何值类型，包括基本类型（如 uint、address),但不能是引用类型。
 - 值类型：映射的值可以是任何 Solidity 支持的数据类型，包括基本类型、复合类型（如 struct）和数组类型。
 - 默认值：如果映射中不存在某个键对应的值，则返回该值类型的默认值。例如，uint 类型的默认值是 0，address 类型的默认值是 address(0)。
 - Gas 成本：读取映射中的值（查找操作）是 gas 消耗较低的操作，而写入映射中的值（更新操作）可能会消耗更多的 gas，特别是在扩展映射时可能需要大量的 gas。
