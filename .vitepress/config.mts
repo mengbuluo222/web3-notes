@@ -58,7 +58,7 @@ export default defineConfig({
             { text: '合约间的交互', link: '/docs/solidity/Interaction' },
             { text: '合约升级', link: '/docs/solidity/upgrade' },
             { text: 'create 与 create2', link: '/docs/solidity/create' },
-            { text: '函数选择器'， link: '/docs/solidity/selector' },
+            { text: '函数选择器', link: '/docs/solidity/selector' }
           ]
         }
       ]
