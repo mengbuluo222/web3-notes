@@ -68,9 +68,9 @@ export default defineConfig({
           text: 'Uniswap V3',
           items: [
             { text: '概述', link: '/docs/uniswap/overview' },
+            { text: '交易价格计算', link: '/docs/uniswap/price' },
             { text: '交易', link: '/docs/uniswap/trade' },
             { text: '流动性', link: '/docs/uniswap/liquidity' },
-            { text: '价格计算', link: '/docs/uniswap/price' },
             { text: '费用计算', link: '/docs/uniswap/fee' }
           ]
         }
