@@ -21,7 +21,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       // { text: 'Home', link: '/' },
-      { text: 'Solidity', link: '/docs/solidity/func' }
+      { text: 'Solidity', link: '/docs/solidity/func' },
+      { text: 'Uniswap V3', link: '/docs/uniswap/overview' }
     ],
 
     sidebar: {
@@ -59,6 +60,18 @@ export default defineConfig({
             { text: '合约升级', link: '/docs/solidity/upgrade' },
             { text: 'create 与 create2', link: '/docs/solidity/create' },
             { text: '函数选择器', link: '/docs/solidity/selector' }
+          ]
+        }
+      ],
+      '/docs/uniswap/': [
+        {
+          text: 'Uniswap V3',
+          items: [
+            { text: '概述', link: '/docs/uniswap/overview' },
+            { text: '交易', link: '/docs/uniswap/trade' },
+            { text: '流动性', link: '/docs/uniswap/liquidity' },
+            { text: '价格计算', link: '/docs/uniswap/price' },
+            { text: '费用计算', link: '/docs/uniswap/fee' }
           ]
         }
       ]

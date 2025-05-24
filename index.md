@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "My Awesome Project"
-  text: "A VitePress Site"
+  name: "web3 入门红宝书"
+  text: "从入门到精通的 web3 学习指南"
   tagline: My great project tagline
   actions:
     - theme: brand
