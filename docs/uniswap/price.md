@@ -73,4 +73,4 @@ quoteExactInputSingle 是 Uniswap V3 的 Quoter 合约中的一个方法，用�
   )
    ```
 
-   这部分逻辑的完整代码已经放在 [github](https://github.com/mengbuluo222/web3-demo/tree/main/pages/wtfswap) 上了，请自行查看。
+   这部分逻辑的完整代码已经放在 [github](https://github.com/mengbuluo222/web3-demo/tree/main/pages/priceExample) 上了，请自行查看。

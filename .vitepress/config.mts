@@ -73,6 +73,16 @@ export default defineConfig({
             { text: '流动性', link: '/docs/uniswap/liquidity' },
             { text: '费用计算', link: '/docs/uniswap/fee' }
           ]
+        },
+        {
+          text: 'Uniswap V2',
+          items: [
+            { text: '概述', link: '/docs/uniswapV2/overview' },
+            { text: '交易价格计算', link: '/docs/uniswap/price' },
+            { text: '交易', link: '/docs/uniswap/trade' },
+            { text: '流动性', link: '/docs/uniswap/liquidity' },
+            { text: '费用计算', link: '/docs/uniswap/fee' }
+          ]
         }
       ]
     },
