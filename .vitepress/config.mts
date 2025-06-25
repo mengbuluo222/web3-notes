@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Sunny's Blog",
-  description: "A VitePress Site",
+  description: "web3 学习笔记｜入门到精通",
   base: '/web3-notes',
   head: [
     [
@@ -22,20 +22,10 @@ export default defineConfig({
     nav: [
       // { text: 'Home', link: '/' },
       { text: 'Solidity', link: '/docs/solidity/func' },
-      { text: 'Uniswap V3', link: '/docs/uniswap/overview' }
+      { text: 'Uniswap', link: '/docs/uniswap/overview' }
     ],
 
     sidebar: {
-      // '/': [
-      //   {
-      //     text: 'Index',
-      //     items: [
-      //       { text: 'Index', link: '/' }
-      //     ]
-      //   }
-      // ],
-      
-
       // 当用户位于 `config` 目录时，会显示此侧边栏
       '/docs/solidity/': [
         {
@@ -65,6 +55,16 @@ export default defineConfig({
       ],
       '/docs/uniswap/': [
         {
+          text: 'Uniswap V2',
+          items: [
+            { text: '概述', link: '/docs/uniswapV2/overview' },
+            { text: '交易价格计算', link: '/docs/uniswap/price' },
+            { text: '交易', link: '/docs/uniswap/trade' },
+            { text: '流动性', link: '/docs/uniswap/liquidity' },
+            { text: '费用计算', link: '/docs/uniswap/fee' }
+          ]
+        },
+        {
           text: 'Uniswap V3',
           items: [
             { text: '概述', link: '/docs/uniswap/overview' },
@@ -74,16 +74,6 @@ export default defineConfig({
             { text: '费用计算', link: '/docs/uniswap/fee' }
           ]
         },
-        {
-          text: 'Uniswap V2',
-          items: [
-            { text: '概述', link: '/docs/uniswapV2/overview' },
-            { text: '交易价格计算', link: '/docs/uniswap/price' },
-            { text: '交易', link: '/docs/uniswap/trade' },
-            { text: '流动性', link: '/docs/uniswap/liquidity' },
-            { text: '费用计算', link: '/docs/uniswap/fee' }
-          ]
-        }
       ]
     },
 

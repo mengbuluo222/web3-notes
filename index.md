@@ -4,22 +4,30 @@ layout: home
 
 hero:
   name: "web3 入门红宝书"
-  text: "从入门到精通的 web3 学习指南"
-  tagline: My great project tagline
+  text: "带你从入门到精通"
+
   actions:
+    - theme: solidity
+      text: solidity 全部指南
+      link: /docs/solidity/intro
+    - theme: uniswap
+      text: uniswap 入门
+      link: /docs/uniswap/overview
     - theme: brand
       text: Markdown Examples
-      link: /markdown-examples
+      link: /docs/markdown-examples
     - theme: alt
       text: API Examples
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 快速入门
+    details: 掌握 web3 开发的基本概念和技术。
+  - title: 深入学习
+    details: 深入了解 web3 开发的各个方面。
+  - title: 实战项目
+    details: 应用 web3 开发的技术解决实际问题。
+  - title: 职业发展
+    details: 提升 web3 开发的技能和能力。
 ---
 
