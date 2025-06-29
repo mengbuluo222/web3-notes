@@ -1,15 +1,50 @@
 # React 面试题
 ## API 高频考题
 1. 高阶组件（HOC）是什么？你在业务中使用过解决了什么问题？
-  - 高阶组件是一个函数，它接受一个组件作为参数并返回一个新的组件。它可以用于复用组件逻辑、增强组件功能或修改组件的渲染行为。
+  - 高阶组件是一个函数，它接受一个组件作为参数并返回一个新的组件，返回的新组件拥有被包裹的组件的所有 props，并且可以添加额外的 props 或逻辑。
   - 在业务中使用 HOC 可以解决跨多个组件共享状态或行为的问题，例如权限控制、日志记录、性能优化等。 
 
 2. 什么时候应该使用类组件而不是函数组件？React 组件错误捕获怎么做？
-  - 类组件适用于需要管理内部状态或生命周期方法的场景，如组件创建到销毁的细致状态管理、需继承其他类组件逻辑。React 16.6 引入了 Hooks，使得函数组件也可以处理状态和副作用，因此现在大多数情况下推荐使用函数组件。
+  - 在早期的 React 中，类组件是唯一支持生命周期方法和内部状态管理的方式，而函数组件是没有状态的，只能通过 Hooks 来模拟类组件的功能。
+  - React 16.6 引入了 Hooks，使得函数组件也可以处理状态和副作用，因此现在大多数情况下推荐使用函数组件。
   - React 组件错误捕获可以通过 `componentDidCatch` 生命周期方法来实现，或者使用 Error Boundary 包裹组件树（通常用类组件实现，作为高阶组件包裹需捕获错误的组件树），React 16+ 支持，可在错误边界组件里记录错误、展示 fallback UI 。
+  ```
+  class ErrorBoundary extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError(error) {
+      // 更新 state 使下一次渲染能够显示降级后的 UI
+      return { hasError: true };
+    }
+  
+    componentDidCatch(error, info) {
+      // 记录错误信息
+      this.setState({ hasError: true });
+    }
+  
+    render() {
+      if (this.state.hasError) {
+        // 渲染错误信息
+        return <h1>Something went wrong.</h1>;
+      }
+  
+      return this.props.children; 
+    }
+  }
+  ```
+  使用：
+  ```
+  <ErrorBoundary>
+    <MyComponent />
+  </ErrorBoundary>
+  ```
+  这样，当 `MyComponent` 组件内部抛出错误时，ErrorBoundary 会捕获错误并渲染错误信息，而不会影响到其他组件的渲染。
 
 3. 如何在 React 中对 props 应用验证？
-  - 可以使用 prop-types 库或 TypeScript 类型注解来对组件 props 进行验证。
+  - 可以使用 React 提供的 PropTypes 库或 TypeScript 类型注解来对组件 props 进行验证。
   - 验证 props 可以避免在组件使用时传入错误类型或缺失的属性，提高代码的健壮性和可维护性。
   |验证需求	|PropTypes	|TypeScript|
   |--|--|--|
@@ -33,10 +68,36 @@
   - 它帮助 React 在更新组件时识别哪些元素发生了变化、添加或删除，从而优化渲染性能。
 
 6. React 中如何创建 refs？创建 refs 的方式有什么区别？
+  React 中，Refs 主要用于获取和操作 DOM 元素或类组件实例，是一种逃脱 props 传递的方法。
   - 字符串 refs（不推荐，易引发问题，已逐渐被弃用趋势 ）：<input ref="myInput" /> ，在类组件中通过 this.refs.myInput 访问，存在 refs 管理不清晰、与 React 纤维架构（Fiber）兼容问题 。
   - 回调 refs：<input ref={(el) => this.myInput = el} /> ，函数会在组件挂载时传入 DOM 元素（或类组件实例），卸载时传入 null ，能更精细控制 refs 赋值时机，可用于动态 refs 场景 。
-  - createRef（类组件常用 ）：在类组件构造函数中 this.myRef = React.createRef() ，然后 <input ref={this.myRef} /> ，挂载后通过 this.myRef.current 访问 DOM 或组件实例，每次渲染会重新创建（但对功能无影响，只是引用变化 ）。
+  - createRef（类组件常用 ）：这是 react 16.3 版本之后推出的，使用这种方式创建的 ref 可以在整个组件的生命周期中保持不变。在类组件构造函数中 this.myRef = React.createRef() ，然后 <input ref={this.myRef} /> ，挂载后通过 this.myRef.current 访问 DOM 或组件实例，每次渲染会重新创建（但对功能无影响，只是引用变化 ）。
+  ```
+  class MyComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.myRef = React.createRef();
+    }
+    componentDidMount() {
+      // 组件挂载后，this.myRef.current 指向 DOM 元素
+      this.myRef.current.focus();
+    }
+
+    render() {
+      return <input ref={this.myRef} />;
+    }
+  }
+  ```
   - useRef（函数组件专用 ）：const myRef = useRef(null) ，作用类似 createRef ，但 useRef 创建的对象在组件多次渲染间保持引用不变，还可用于保存任意可变值（不只是 DOM 引用 ），且能避免因闭包导致的取值问题 。
+  ```
+  function MyComponent() {
+    const myRef = useRef(null);
+    useEffect(() => {
+      myRef.current.focus();
+    }, []);
+    return <input ref={myRef} />;
+  }
+  ```
 
 7. createContext 解决了什么问题？React 中父子组件如何与子组件通信？子组件如何改变父组件的状态？
   - createContext 提供了一种跨层级组件传递数据的方式，避免了通过 props 一层层传递的繁琐。
@@ -67,9 +128,11 @@
   - `getDerivedStateFromProps` 对应 `static getDerivedStateFromProps`。
   - `getSnapshotBeforeUpdate` 对应 `getSnapshotBeforeUpdate`。
 
-10. React 中的状态管理你如何选择？什么是状态上移？
+10. React 中的状态管理你如何选择？什么是状态上移？什么是状态撕裂？useState同步还是异步？
   - 状态上移：将组件内部的状态提升到最近的父组件，多个子组件共享状态时，状态上移是一种优化方式，避免多个组件维护各自的状态，提高代码复用性和可维护性。
-  - 状态管理库：React 官方不推荐直接在组件内部管理状态，推荐使用状态管理库（如 Redux、Mobx 等 ），它们提供了全局状态管理、数据共享和副作用处理等功能，提高了应用的可维护性和可扩展性。
+  - 状态管理库：React 官方不推荐直接在组件内部管理状态，推荐使用状态管理库（如 Redux、Mobx、Jotai等 ），它们提供了全局状态管理、数据共享和副作用处理等功能，提高了应用的可维护性和可扩展性。
+  - 状态撕裂是指在并发渲染中，由于渲染的优先级不同，可能导致应用中的不同部分看到的同一份共享状态不一致的问题。这是因为在 concurrent Mode 下，react 可以选择暂停、中断或延迟某些更新，以优先处理更重要的更新。如果你的状态更新和组件的渲染不是同步的，那么就可以出现状态撕裂的问题。
+  - useState 是异步的，useReducer 是同步的，useReducer 可以避免状态撕裂问题，因为它是同步更新状态的，不会被中断。
 
 11. 在 React 中什么是 Portal？
   - Portal 可以将子组件渲染到父组件 DOM 树之外的 DOM 节点中，通常用于实现模态框、弹出层、通知等组件。
